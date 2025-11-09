@@ -1,88 +1,61 @@
-# Project Setup and Execution Guide
+# Intelligent Job Search Assistant
 
-This guide provides instructions on how to set up the environment and run the Job Search AI Assistant application.
+This AI-powered assistant streamlines your job search by analyzing your resume against an ideal job description, finding relevant job postings, and generating tailored application materials.
 
-## 1. Prerequisites
+## Features
 
-- Python 3.7+
-- `pip` (Python package installer)
+-   **AI-Powered Analysis**: Get deep insights into your resume, an ideal job description, and a gap analysis between the two.
+-   **Smart Job Search**: Automatically finds relevant, recent job postings based on your profile.
+-   **ATS-Friendly Materials**: Generate a tailored LaTeX resume and a professional cover letter for any job you select.
+-   **Performance Comparison**: See a "Before vs. After" ATS analysis to understand how the generated resume improves your chances.
+-   **Local Caching**: Caches job searches and analysis to speed up subsequent uses and reduce API costs.
 
-## 2. Environment Setup
+## Getting Started
 
-It is highly recommended to use a virtual environment to manage project dependencies.
+### Prerequisites
 
-### Create a Virtual Environment
+-   Python 3.7+
+-   Git
 
-```bash
-python -m venv .venv
-```
+### Installation & Setup
 
-### Activate the Virtual Environment
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/ajay1808/Intelligent-Job-Search.git
+    cd Intelligent-Job-Search
+    ```
 
-**On macOS and Linux:**
+2.  **Run the setup script for your operating system.** This will create a virtual environment and install all necessary dependencies.
 
-```bash
-source .venv/bin/activate
-```
+    -   **For macOS and Linux:**
+        ```bash
+        ./setup.sh
+        ```
 
-**On Windows:**
+    -   **For Windows:**
+        ```bat
+        setup.bat
+        ```
 
-```bash
-.venv\Scripts\activate
-```
+## Running the Application
 
-## 3. Install Dependencies
+After the setup is complete, you need to activate the virtual environment and run the Streamlit application.
 
-Install the required Python packages using the `requirements.txt` file:
+1.  **Activate the virtual environment:**
+    -   **macOS/Linux:** `source .venv/bin/activate`
+    -   **Windows:** `.venv\Scripts\activate`
 
-```bash
-pip install -r requirements.txt
-```
-
-## 4. Running the Application
-
-Once the dependencies are installed, you can run the Streamlit application:
-
-```bash
-streamlit run app.py
-```
+2.  **Run the app:**
+    ```bash
+    streamlit run app.py
+    ```
 
 The application should now be open and accessible in your web browser.
 
-## 5. Project Structure
+## How to Use the Application
 
-```
-.
-├── app.py                  # Main Streamlit application
-├── requirements.txt        # Project dependencies
-├── .gitignore              # Files to be ignored by Git
-├── api_keys/               # Stores API keys
-├── cache/                  # Caches job search results
-├── data/
-│   ├── job_descriptions/   # Stores uploaded job descriptions
-│   └── resumes/            # Stores uploaded resumes
-├── src/
-│   ├── __init__.py
-│   ├── analysis/
-│   │   ├── __init__.py
-│   │   ├── jd_analyzer.py
-│   │   └── resume_analyzer.py
-│   ├── utils/
-│   │   ├── __init__.py
-│   │   ├── api_keys.py
-│   │   ├── caching.py
-│   │   └── file_operations.py
-│   └── web/
-│       ├── __init__.py
-│       └── job_search.py
-└── templates/
-    └── resume_template.tex # LaTeX resume template
-```
-
-## 6. How to Use the Application
-
-1.  **Provide API Key**: Select your desired LLM provider from the sidebar and enter your API key. The key will be saved locally for future use.
-2.  **Upload Documents**: Upload your resume and an ideal job description in PDF or DOCX format.
-3.  **Analyze**: Click the "Analyze" button to get insights into your resume, the job description, and a gap analysis.
-4.  **Find Jobs**: Click "Find Matching Jobs" to search for relevant job postings. The results will be cached to avoid repeated searches.
-5.  **Generate Materials**: Select a job from the search results and click "Generate" to create a tailored resume and cover letter.
+1.  **Provide API Keys**: In the sidebar, enter your API keys for Gemini (for analysis) and Perplexity (for job searching). Your keys are saved locally for future sessions.
+2.  **Upload Documents**: Upload your resume and an ideal job description. You can also provide a custom LaTeX resume template.
+3.  **Analyze and Search**: Click "Analyze and Search for Jobs" to kick off the process.
+4.  **Generate Materials**: Select a job from the results list and click "Generate" to create a tailored resume and cover letter.
+5.  **Manage History**: View previously found jobs or clear your search history from the sidebar.
