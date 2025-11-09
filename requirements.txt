@@ -1,3 +1,7 @@
 google-generativeai
 perplexityai
+python-docx
+pypdf2
+pydantic
+python-dateutil
 

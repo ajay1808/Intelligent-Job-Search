@@ -3,7 +3,3 @@ streamlit
 pandas
 pyarrow
 numpy
-python-docx
-pypdf2
-pydantic
-python-dateutil

@@ -10,9 +10,15 @@ then
     exit 1
 fi
 
-# Create or update the conda environment
+# Remove the old environment to ensure a clean slate
 ENV_NAME="jobsearch"
-echo "Ensuring Conda environment '$ENV_NAME' is up to date..."
+if conda env list | grep -q "$ENV_NAME"; then
+    echo "Removing existing Conda environment '$ENV_NAME' to ensure a clean setup..."
+    conda env remove -n $ENV_NAME -y
+fi
+
+# Create the conda environment
+echo "Creating new Conda environment '$ENV_NAME'..."
 conda create --name $ENV_NAME --file conda-requirements.txt -y
 
 # Activate the environment and install pip dependencies

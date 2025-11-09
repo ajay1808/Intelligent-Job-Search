@@ -8,9 +8,16 @@ if %errorlevel% neq 0 (
     exit /b
 )
 
-REM Create or update the conda environment
+REM Remove the old environment to ensure a clean slate
 set ENV_NAME="jobsearch"
-echo "Ensuring Conda environment '%ENV_NAME%' is up to date..."
+conda env list | findstr /C:%ENV_NAME% >nul
+if %errorlevel% equ 0 (
+    echo "Removing existing Conda environment '%ENV_NAME%' to ensure a clean setup..."
+    conda env remove -n %ENV_NAME% -y
+)
+
+REM Create the conda environment
+echo "Creating new Conda environment '%ENV_NAME%'..."
 conda create --name %ENV_NAME% --file conda-requirements.txt -y
 
 REM Activate the environment and install pip dependencies
