@@ -8,19 +8,24 @@ if %errorlevel% neq 0 (
     exit /b
 )
 
-REM Remove the old environment to ensure a clean slate
-set ENV_NAME="jobsearch"
-conda env list | findstr /C:%ENV_NAME% >nul
-if %errorlevel% equ 0 (
-    echo "Removing existing Conda environment '%ENV_NAME%' to ensure a clean setup..."
-    conda env remove -n %ENV_NAME% -y
+REM Read version and set environment name
+set /p VERSION=<VERSION
+set ENV_NAME=jobsearch-v%VERSION%
+
+REM Create the environment if it doesn't exist
+conda env list | findstr /C:"%ENV_NAME% " >nul
+if %errorlevel% neq 0 (
+    echo "Conda environment '%ENV_NAME%' not found. Creating it now..."
+    
+    REM Temporarily set the environment name for creation
+    (echo name: %ENV_NAME% && findstr /v /i "name:" environment.yml) > temp_env.yml
+    conda env create -f temp_env.yml
+    del temp_env.yml
+) else (
+    echo "Conda environment '%ENV_NAME%' already exists."
 )
 
-REM Create the conda environment from the environment.yml file
-echo "Creating new Conda environment from environment.yml..."
-conda env create -f environment.yml
-
 REM Activate the environment and run the application
-echo "Activating environment and launching the application..."
+echo "Activating environment '%ENV_NAME%' and launching the application..."
 call conda activate %ENV_NAME%
 streamlit run app.py

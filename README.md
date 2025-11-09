@@ -36,7 +36,7 @@ This AI-powered assistant streamlines your job search by analyzing your resume a
         ```bat
         run.bat
         ```
-    When you run the script, it will automatically create a fresh Conda environment from the `environment.yml` file and launch the application. To ensure a clean setup, it will remove any old environment with the same name before creating the new one. The first run will take a few minutes to download and install the packages.
+    When you run the script, it will check the `VERSION` file and create a version-specific Conda environment (e.g., `jobsearch-v1.0.0`) if it doesn't already exist. If you update the version, a new environment will be created automatically on the next run.
 
 The application should now be open and accessible in your web browser.
 

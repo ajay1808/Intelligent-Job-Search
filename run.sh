@@ -10,19 +10,24 @@ then
     exit 1
 fi
 
-# Remove the old environment to ensure a clean slate
-ENV_NAME="jobsearch"
-if conda env list | grep -q "$ENV_NAME"; then
-    echo "Removing existing Conda environment '$ENV_NAME' to ensure a clean setup..."
-    conda env remove -n $ENV_NAME -y
+# Read version and set environment name
+VERSION=$(cat VERSION)
+ENV_NAME="jobsearch-v$VERSION"
+
+# Create the environment if it doesn't exist
+if ! conda env list | grep -q "^$ENV_NAME\s"; then
+    echo "Conda environment '$ENV_NAME' not found. Creating it now..."
+    # Temporarily set the environment name for creation
+    sed -i.bak "1s/.*/name: $ENV_NAME/" environment.yml
+    conda env create -f environment.yml
+    # Revert the change to environment.yml
+    mv environment.yml.bak environment.yml
+else
+    echo "Conda environment '$ENV_NAME' already exists."
 fi
 
-# Create the conda environment from the environment.yml file
-echo "Creating new Conda environment from environment.yml..."
-conda env create -f environment.yml
-
 # Activate the environment and run the application
-echo "Activating environment and launching the application..."
+echo "Activating environment '$ENV_NAME' and launching the application..."
 eval "$(conda shell.bash hook)"
-conda activate $ENV_NAME
+conda activate "$ENV_NAME"
 streamlit run app.py
