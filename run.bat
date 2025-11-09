@@ -16,14 +16,15 @@ if %errorlevel% equ 0 (
     conda env remove -n %ENV_NAME% -y
 )
 
-REM Create the conda environment from conda-forge
+REM Create the conda environment
 echo "Creating new Conda environment '%ENV_NAME%' from conda-forge..."
 conda create --name %ENV_NAME% --file conda-requirements.txt -c conda-forge -y
 
-REM Install pip dependencies
-echo "Installing pip dependencies..."
-conda run -n %ENV_NAME% pip install -r requirements.txt
+REM Activate the environment and install pip dependencies
+echo "Activating environment and installing pip dependencies..."
+call conda activate %ENV_NAME%
+pip install -r requirements.txt
 
 REM Launch the application
 echo "Launching the application..."
-conda run -n %ENV_NAME% streamlit run app.py
+streamlit run app.py

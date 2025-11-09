@@ -17,14 +17,16 @@ if conda env list | grep -q "$ENV_NAME"; then
     conda env remove -n $ENV_NAME -y
 fi
 
-# Create the conda environment from conda-forge
+# Create the conda environment
 echo "Creating new Conda environment '$ENV_NAME' from conda-forge..."
 conda create --name $ENV_NAME --file conda-requirements.txt -c conda-forge -y
 
-# Install pip dependencies
-echo "Installing pip dependencies..."
-conda run -n $ENV_NAME pip install -r requirements.txt
+# Activate the environment and install pip dependencies
+echo "Activating environment and installing pip dependencies..."
+eval "$(conda shell.bash hook)"
+conda activate $ENV_NAME
+pip install -r requirements.txt
 
 # Launch the application
 echo "Launching the application..."
-conda run -n $ENV_NAME streamlit run app.py
+streamlit run app.py
