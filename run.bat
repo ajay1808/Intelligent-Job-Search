@@ -8,17 +8,11 @@ if %errorlevel% neq 0 (
     exit /b
 )
 
-REM Create and set up the conda environment if it doesn't exist
-set ENV_NAME="jobsearch"
-conda env list | findstr /C:%ENV_NAME% >nul
-if %errorlevel% neq 0 (
-    echo "Conda environment '%ENV_NAME%' not found. Creating it now from environment.yml..."
-    conda env create -f environment.yml
-) else (
-    echo "Conda environment '%ENV_NAME%' already exists."
-)
+REM Create or update the conda environment from the environment.yml file
+echo "Ensuring Conda environment is up to date..."
+conda env update --file environment.yml --prune
 
 REM Activate the environment and run the application
 echo "Activating environment and launching the application..."
-call conda activate %ENV_NAME%
+call conda activate jobsearch
 streamlit run app.py

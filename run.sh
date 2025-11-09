@@ -8,17 +8,12 @@ then
     exit
 fi
 
-# Create and set up the conda environment if it doesn't exist
-ENV_NAME="jobsearch"
-if ! conda env list | grep -q "$ENV_NAME"; then
-    echo "Conda environment '$ENV_NAME' not found. Creating it now from environment.yml..."
-    conda env create -f environment.yml
-else
-    echo "Conda environment '$ENV_NAME' already exists."
-fi
+# Create or update the conda environment from the environment.yml file
+echo "Ensuring Conda environment is up to date..."
+conda env update --file environment.yml --prune
 
 # Activate the environment and run the application
 echo "Activating environment and launching the application..."
 eval "$(conda shell.bash hook)"
-conda activate $ENV_NAME
+conda activate jobsearch
 streamlit run app.py

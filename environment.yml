@@ -5,6 +5,7 @@ dependencies:
   - python=3.9
   - pandas
   - pyarrow=14.0.1
+  - numpy<2
   - pip
   - pip:
     - streamlit
