@@ -8,11 +8,16 @@ if %errorlevel% neq 0 (
     exit /b
 )
 
-REM Create or update the conda environment from the environment.yml file
-echo "Ensuring Conda environment 'jobsearch' is up to date..."
-conda env update --file environment.yml --prune
+REM Create or update the conda environment
+set ENV_NAME="jobsearch"
+echo "Ensuring Conda environment '%ENV_NAME%' is up to date..."
+conda create --name %ENV_NAME% --file conda-requirements.txt -y
 
-REM Activate the environment and run the application
-echo "Activating environment and launching the application..."
-call conda activate jobsearch
+REM Activate the environment and install pip dependencies
+echo "Activating environment and installing pip dependencies..."
+call conda activate %ENV_NAME%
+pip install -r requirements.txt
+
+REM Launch the application
+echo "Launching the application..."
 streamlit run app.py

@@ -10,12 +10,17 @@ then
     exit 1
 fi
 
-# Create or update the conda environment from the environment.yml file
-echo "Ensuring Conda environment 'jobsearch' is up to date..."
-conda env update --file environment.yml --prune
+# Create or update the conda environment
+ENV_NAME="jobsearch"
+echo "Ensuring Conda environment '$ENV_NAME' is up to date..."
+conda create --name $ENV_NAME --file conda-requirements.txt -y
 
-# Activate the environment and run the application
-echo "Activating environment and launching the application..."
+# Activate the environment and install pip dependencies
+echo "Activating environment and installing pip dependencies..."
 eval "$(conda shell.bash hook)"
-conda activate jobsearch
+conda activate $ENV_NAME
+pip install -r requirements.txt
+
+# Launch the application
+echo "Launching the application..."
 streamlit run app.py
