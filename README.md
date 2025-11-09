@@ -17,7 +17,7 @@ This AI-powered assistant streamlines your job search by analyzing your resume a
 -   An Anaconda or Miniconda distribution of Python.
 -   Git
 
-## Quickstart
+## Manual Installation & Setup
 
 1.  **Clone the repository:**
     ```bash
@@ -25,18 +25,24 @@ This AI-powered assistant streamlines your job search by analyzing your resume a
     cd Intelligent-Job-Search
     ```
 
-2.  **Run the application:**
+2.  **Create and activate the Conda environment:**
+    ```bash
+    conda create -n jobsearch -c conda-forge --file conda-requirements.txt -y
+    conda activate jobsearch
+    ```
 
-    -   **For macOS and Linux:**
-        ```bash
-        ./run.sh
-        ```
+3.  **Install the remaining packages with pip:**
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-    -   **For Windows:**
-        ```bat
-        run.bat
-        ```
-    When you run the script, it will automatically create a Conda environment using the reliable `conda-forge` channel, install the core dependencies from `conda-requirements.txt`, install the remaining packages from `requirements.txt`, and then launch the application.
+## Running the Application
+
+Once the setup is complete, you can run the application with a single command:
+
+```bash
+streamlit run app.py
+```
 
 The application should now be open and accessible in your web browser.
 
