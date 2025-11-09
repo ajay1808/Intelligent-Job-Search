@@ -1,0 +1,12 @@
+streamlit
+pandas
+python-docx
+PyPDF2
+google-generativeai
+perplexity-ai
+pydantic>=2.0.0
+python-dateutil
+hashlib
+typing-extensions
+# Add any other libraries required by the LLM providers
+# e.g., openai, anthropic
