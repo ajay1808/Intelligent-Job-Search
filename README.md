@@ -17,7 +17,7 @@ This AI-powered assistant streamlines your job search by analyzing your resume a
 -   An Anaconda or Miniconda distribution of Python.
 -   Git
 
-### Installation & Setup
+## Quickstart
 
 1.  **Clone the repository:**
     ```bash
@@ -25,31 +25,18 @@ This AI-powered assistant streamlines your job search by analyzing your resume a
     cd Intelligent-Job-Search
     ```
 
-2.  **Run the setup script for your operating system.** This will create a dedicated Conda environment and install all necessary dependencies.
+2.  **Run the application:**
 
     -   **For macOS and Linux:**
         ```bash
-        ./setup.sh
+        ./run.sh
         ```
 
     -   **For Windows:**
         ```bat
-        setup.bat
+        run.bat
         ```
-
-## Running the Application
-
-After the setup is complete, you need to activate the Conda environment and run the Streamlit application.
-
-1.  **Activate the Conda environment:**
-    ```bash
-    conda activate jobsearch
-    ```
-
-2.  **Run the app:**
-    ```bash
-    streamlit run app.py
-    ```
+    The first time you run the script, it will automatically create a Conda environment and install all dependencies. Subsequent runs will be much faster.
 
 The application should now be open and accessible in your web browser.
 
