@@ -1,55 +1,84 @@
-# Intelligent Job Search Assistant
+# Project Setup and Execution Guide
 
-This AI-powered assistant streamlines your job search by analyzing your resume against an ideal job description, finding relevant job postings, and generating tailored application materials.
+This guide provides instructions on how to set up the environment and run the Job Search AI Assistant application.
 
-## Features
+## Setup and Installation
 
--   **AI-Powered Analysis**: Get deep insights into your resume, an ideal job description, and a gap analysis between the two.
--   **Smart Job Search**: Automatically finds relevant, recent job postings based on your profile.
--   **ATS-Friendly Materials**: Generate a tailored LaTeX resume and a professional cover letter for any job you select.
--   **Performance Comparison**: See a "Before vs. After" ATS analysis to understand how the generated resume improves your chances.
--   **Local Caching**: Caches job searches and analysis to speed up subsequent uses and reduce API costs.
+Follow these steps to get the application running on your local machine.
 
-## Getting Started
+### 1. Prerequisites
 
-### Prerequisites
+-   [Anaconda](https://www.anaconda.com/download) or [Miniconda](https://docs.conda.io/projects/miniconda/en/latest/) installed.
+-   Python 3.10
 
--   An Anaconda or Miniconda distribution of Python.
--   Git
-
-## Manual Installation & Setup
-
-1.  **Clone the repository:**
-    ```bash
-    git clone https://github.com/ajay1808/Intelligent-Job-Search.git
-    cd Intelligent-Job-Search
-    ```
-
-2.  **Create and activate the Conda environment:**
-    ```bash
-    conda create -n jobsearch -c conda-forge --file conda-requirements.txt -y
-    conda activate jobsearch
-    ```
-
-3.  **Install the remaining packages with pip:**
-    ```bash
-    pip install -r requirements.txt
-    ```
-
-## Running the Application
-
-Once the setup is complete, you can run the application with a single command:
+### 2. Clone the Repository
 
 ```bash
-streamlit run app.py
+git clone https://github.com/ajay1808/Intelligent-Job-Search.git
+cd Intelligent-Job-Search
 ```
 
-The application should now be open and accessible in your web browser.
+### 3. Create and Activate the Conda Environment
 
-## How to Use the Application
+This project uses a Conda environment to ensure consistency. The following commands will create a new environment named `jobsearch` with Python 3.10 and activate it.
 
-1.  **Provide API Keys**: In the sidebar, enter your API keys for Gemini (for analysis) and Perplexity (for job searching). Your keys are saved locally for future sessions.
-2.  **Upload Documents**: Upload your resume and an ideal job description. You can also provide a custom LaTeX resume template.
-3.  **Analyze and Search**: Click "Analyze and Search for Jobs" to kick off the process.
-4.  **Generate Materials**: Select a job from the results list and click "Generate" to create a tailored resume and cover letter.
-5.  **Manage History**: View previously found jobs or clear your search history from the sidebar.
+```bash
+conda create -n jobsearch python=3.10 -y
+conda activate jobsearch
+```
+
+### 4. Install Dependencies
+
+Install all the required Python packages into your new environment using the `requirements.txt` file:
+
+```bash
+pip install -r requirements.txt
+```
+
+## How to Run
+
+With the `jobsearch` environment still active, run the application using the following command:
+
+```bash
+python -m streamlit run app.py
+```
+
+Using `python -m streamlit` ensures that you are running the version of Streamlit installed in your Conda environment, preventing potential path issues. The application will open in your default web browser.
+
+## 5. Project Structure
+
+```
+.
+├── app.py                  # Main Streamlit application
+├── requirements.txt        # Project dependencies
+├── .gitignore              # Files to be ignored by Git
+├── api_keys/               # Stores API keys
+├── cache/                  # Caches job search results
+├── data/
+│   ├── job_descriptions/   # Stores uploaded job descriptions
+│   └── resumes/            # Stores uploaded resumes
+├── src/
+│   ├── __init__.py
+│   ├── analysis/
+│   │   ├── __init__.py
+│   │   ├── jd_analyzer.py
+│   │   └── resume_analyzer.py
+│   ├── utils/
+│   │   ├── __init__.py
+│   │   ├── api_keys.py
+│   │   ├── caching.py
+│   │   └── file_operations.py
+│   └── web/
+│       ├── __init__.py
+│       └── job_search.py
+└── templates/
+    └── resume_template.tex # LaTeX resume template
+```
+
+## 6. How to Use the Application
+
+1.  **Provide API Key**: Select your desired LLM provider from the sidebar and enter your API key. The key will be saved locally for future use.
+2.  **Upload Documents**: Upload your resume and an ideal job description in PDF or DOCX format.
+3.  **Analyze**: Click the "Analyze" button to get insights into your resume, the job description, and a gap analysis.
+4.  **Find Jobs**: Click "Find Matching Jobs" to search for relevant job postings. The results will be cached to avoid repeated searches.
+5.  **Generate Materials**: Select a job from the search results and click "Generate" to create a tailored resume and cover letter.

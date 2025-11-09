@@ -1,5 +1,4 @@
 import os
-import docx
 from PyPDF2 import PdfReader
 from io import BytesIO
 
@@ -43,8 +42,6 @@ def get_cached_user_file(file_type):
 def extract_text_from_file(file_path):
     if file_path.endswith(".pdf"):
         return extract_text_from_pdf(file_path)
-    elif file_path.endswith(".docx"):
-        return extract_text_from_docx(file_path)
     else:
         return ""
 
@@ -54,13 +51,6 @@ def extract_text_from_pdf(file_path):
         text = ""
         for page in reader.pages:
             text += page.extract_text()
-    return text
-
-def extract_text_from_docx(file_path):
-    doc = docx.Document(file_path)
-    text = ""
-    for para in doc.paragraphs:
-        text += para.text + "\n"
     return text
 
 def extract_text_from_latex(latex_content):

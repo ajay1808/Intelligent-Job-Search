@@ -1,3 +1,7 @@
+streamlit
+pandas
+PyPDF2
 google-generativeai
 perplexityai
-
+pydantic>=2.0.0
+python-dateutil

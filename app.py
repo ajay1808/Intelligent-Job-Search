@@ -44,7 +44,7 @@ def main():
     # Resume
     if st.session_state.resume_path:
         st.sidebar.info(f"Using cached resume: {os.path.basename(st.session_state.resume_path)}")
-    resume = st.sidebar.file_uploader("Upload New Resume", type=["pdf", "docx"])
+    resume = st.sidebar.file_uploader("Upload New Resume", type=["pdf"])
     if resume:
         st.session_state.resume_path = file_operations.cache_user_file(resume, "resume")
         st.sidebar.success("New resume cached!")
@@ -52,7 +52,7 @@ def main():
     # Job Description
     if st.session_state.jd_path:
         st.sidebar.info(f"Using cached JD: {os.path.basename(st.session_state.jd_path)}")
-    ideal_jd = st.sidebar.file_uploader("Upload New Ideal Job Description", type=["pdf", "docx"])
+    ideal_jd = st.sidebar.file_uploader("Upload New Ideal Job Description", type=["pdf"])
     if ideal_jd:
         st.session_state.jd_path = file_operations.cache_user_file(ideal_jd, "jd")
         st.sidebar.success("New JD cached!")
