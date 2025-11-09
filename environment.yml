@@ -1,14 +1,15 @@
 name: jobsearch
 channels:
+  - conda-forge
   - defaults
 dependencies:
   - python=3.9
+  - streamlit
   - pandas
   - pyarrow=14.0.1
   - numpy<2
   - pip
   - pip:
-    - streamlit
     - python-docx
     - PyPDF2
     - google-generativeai
