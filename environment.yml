@@ -1,0 +1,16 @@
+name: jobsearch
+channels:
+  - defaults
+dependencies:
+  - python=3.9
+  - pandas
+  - pyarrow=14.0.1
+  - pip
+  - pip:
+    - streamlit
+    - python-docx
+    - PyPDF2
+    - google-generativeai
+    - perplexityai
+    - pydantic>=2.0.0
+    - python-dateutil

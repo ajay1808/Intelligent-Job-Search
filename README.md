@@ -36,7 +36,7 @@ This AI-powered assistant streamlines your job search by analyzing your resume a
         ```bat
         run.bat
         ```
-    The first time you run the script, it will automatically create a Conda environment and install all dependencies. Subsequent runs will be much faster.
+    The first time you run the script, it will automatically create a Conda environment using the `environment.yml` file and install all dependencies. Subsequent runs will be much faster.
 
 The application should now be open and accessible in your web browser.
 

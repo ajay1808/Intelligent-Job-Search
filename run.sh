@@ -11,13 +11,8 @@ fi
 # Create and set up the conda environment if it doesn't exist
 ENV_NAME="jobsearch"
 if ! conda env list | grep -q "$ENV_NAME"; then
-    echo "Conda environment '$ENV_NAME' not found. Creating it now..."
-    conda create -n $ENV_NAME python=3.9 -y
-    
-    echo "Installing dependencies from requirements.txt..."
-    eval "$(conda shell.bash hook)"
-    conda activate $ENV_NAME
-    pip install -r requirements.txt
+    echo "Conda environment '$ENV_NAME' not found. Creating it now from environment.yml..."
+    conda env create -f environment.yml
 else
     echo "Conda environment '$ENV_NAME' already exists."
 fi
