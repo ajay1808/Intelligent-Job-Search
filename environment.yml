@@ -11,8 +11,8 @@ dependencies:
   - pypdf2
   - pydantic
   - python-dateutil
+  - google-generativeai
   - pip
   - pip:
-    - google-generativeai
     - perplexityai
 
