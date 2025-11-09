@@ -1,22 +1,23 @@
 @echo off
-echo "Setting up Job Search AI Assistant..."
+echo "Setting up Job Search AI Assistant using Conda..."
 
-REM Check if python is installed
-python --version >nul 2>&1
+REM Check if conda is installed
+conda --version >nul 2>&1
 if %errorlevel% neq 0 (
-    echo "Python could not be found. Please install Python and try again."
+    echo "Conda could not be found. Please install Miniconda or Anaconda and try again."
     exit /b
 )
 
-REM Create a virtual environment
-echo "Creating virtual environment..."
-python -m venv .venv
+REM Create a conda environment
+set ENV_NAME="jobsearch"
+echo "Creating Conda environment '%ENV_NAME%'..."
+conda create -n %ENV_NAME% python=3.9 -y
 
-REM Activate the virtual environment and install dependencies
+REM Activate the environment and install dependencies
 echo "Installing dependencies from requirements.txt..."
-call .venv\Scripts\activate.bat
+call conda activate %ENV_NAME%
 pip install -r requirements.txt
 
 echo "Setup complete!"
 echo "To run the application, use the following command:"
-echo ".venv\Scripts\activate.bat && streamlit run app.py"
+echo "conda activate %ENV_NAME% && streamlit run app.py"
